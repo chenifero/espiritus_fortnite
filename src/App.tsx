@@ -61,10 +61,7 @@ export default function App() {
         </div>
       </div>
 
-      <main
-        className="mx-auto max-w-5xl px-4 pb-16 pt-5"
-        style={{ paddingBottom: 'calc(4rem + env(safe-area-inset-bottom, 0px))' }}
-      >
+      <main className="mx-auto max-w-5xl px-4 pb-12 pt-5">
         {grouped.length === 0 ? (
           <EmptyState
             onReset={() =>
@@ -100,6 +97,23 @@ export default function App() {
           ))
         )}
       </main>
+
+      <footer
+        className="border-t border-edge"
+        style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}
+      >
+        <p className="mx-auto max-w-5xl px-4 pt-6 text-center text-[0.8rem] text-dust">
+          Realizado por{' '}
+          <a
+            href="https://iamsergio.dev/"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold text-ash underline decoration-edge-lit underline-offset-4 transition-colors hover:text-chalk hover:decoration-ash"
+          >
+            iamsergio.dev
+          </a>
+        </p>
+      </footer>
 
       {open && (
         <SpriteSheet
