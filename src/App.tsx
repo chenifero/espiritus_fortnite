@@ -102,17 +102,23 @@ export default function App() {
         className="border-t border-edge"
         style={{ paddingBottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))' }}
       >
-        <p className="mx-auto max-w-5xl px-4 pt-6 text-center text-[0.8rem] text-dust">
-          Realizado por{' '}
-          <a
-            href="https://iamsergio.dev/"
-            target="_blank"
-            rel="noreferrer"
-            className="font-semibold text-ash underline decoration-edge-lit underline-offset-4 transition-colors hover:text-chalk hover:decoration-ash"
-          >
-            iamsergio.dev
-          </a>
-        </p>
+        <div className="mx-auto max-w-5xl px-4 pt-6 text-center text-[0.8rem] text-dust">
+          <p>
+            Realizado por{' '}
+            <a
+              href="https://iamsergio.dev/"
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-ash underline decoration-edge-lit underline-offset-4 transition-colors hover:text-chalk hover:decoration-ash"
+            >
+              iamsergio.dev
+            </a>
+          </p>
+          <p className="mt-1.5 text-[0.72rem]">
+            Proyecto de fans, no afiliado con Epic Games. Fortnite y los espíritus son marcas de
+            Epic Games, Inc.
+          </p>
+        </div>
       </footer>
 
       {open && (
