@@ -42,6 +42,7 @@
   "morgana": { "catch": "morgana", "variants": { "base": "37da59fd", "gold": "c71a2ee0", "cheat-master": "bdebbf33", "loot-hacker": "74288dce", "bounty-hunter": "d51153fb" } },
   "estanque": { "catch": "pond", "variants": { "base": "7b776cff", "gold": "0ccc6181", "cheat-master": "ad715821", "loot-hacker": "7f351fff", "bounty-hunter": "6127ff82" } },
   "jazz-jackrabbit": { "catch": "jackrabbit", "variants": { "base": "2f5b060e", "gold": "5678b84d", "cheat-master": "a6eed1b6", "loot-hacker": "75868a73", "bounty-hunter": "2d607639" } },
+  "cumpleanos": { "catch": null, "variants": { "base": null, "gold": null, "cheat-master": null, "loot-hacker": null, "bounty-hunter": null } },
   "rayos-x": { "catch": "x-ray", "variants": { "base": "b5b032c9", "gold": "f39e8287", "cheat-master": "d60d5c74", "loot-hacker": "62a53d4c", "bounty-hunter": "35bff25b" } },
   "klombo": { "catch": "klombo", "variants": { "base": "a8caca64", "gold": "15e6e7b1", "cheat-master": "a6218e37", "loot-hacker": "c7bf6fb4", "bounty-hunter": "201e3037" } },
   "corona-victoria": { "catch": "crown", "variants": { "base": "d6c87f5f", "gold": "897e824f", "cheat-master": "6d302828", "loot-hacker": "8eb656e3", "bounty-hunter": "4be74690" } }

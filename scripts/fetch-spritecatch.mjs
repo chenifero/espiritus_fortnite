@@ -64,9 +64,17 @@ async function main() {
   let ok = 0
   let bytes = 0
   const failed = []
+  const skipped = []
 
   for (const [id, { catch: slug, variants }] of Object.entries(catalog)) {
-    const wanted = withVariants ? Object.entries(variants) : [['base', variants.base]]
+    // Sin slug no está publicado en spritecatch: sus variantes se quedan sin arte.
+    if (!slug) {
+      skipped.push(id)
+      continue
+    }
+    const wanted = (withVariants ? Object.entries(variants) : [['base', variants.base]]).filter(
+      ([, hash]) => hash,
+    )
 
     for (const [variant, hash] of wanted) {
       const url = `https://img.spritecatch.com/sprites/${slug}/${variant}-${hash}.png`
@@ -90,6 +98,7 @@ async function main() {
   }
 
   console.log(`\nDescargadas ${ok} imágenes (${(bytes / 1024 / 1024).toFixed(1)} MB)`)
+  if (skipped.length) console.log(`Sin publicar en spritecatch: ${skipped.join(', ')}`)
   if (failed.length) console.log(`Fallos:\n  ${failed.join('\n  ')}`)
   console.log('Ahora: npm run sprites:sync')
 }

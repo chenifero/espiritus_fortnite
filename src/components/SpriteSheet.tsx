@@ -1,11 +1,11 @@
-import { Check, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { useEffect, type CSSProperties } from 'react'
 import { seasons, type Sprite } from '../data/sprites'
 import { variantsById, type VariantId } from '../data/variants'
-import { cardId, cardImage, spriteProgress, variantsFor } from '../lib/cards'
+import { cardId, cardImage, hasVariantArt, spriteProgress, variantsFor } from '../lib/cards'
 import { rarityColor, spriteTag } from '../lib/rarity'
 import type { CardState, Collection } from '../lib/useCollection'
-import { CrownBadge } from './CrownBadge'
+import { CrownButton } from './CrownBadge'
 
 const GOLD = '#ffc42e'
 
@@ -146,6 +146,7 @@ export function SpriteSheet({ sprite, cards, onCycle, onSetMany, onClose }: Prop
                 color={color}
                 state={cards[cardId(sprite.id, variant)]}
                 onCycle={() => onCycle(cardId(sprite.id, variant))}
+                onMastery={(next) => onSetMany([cardId(sprite.id, variant)], next)}
               />
             ))}
           </div>
@@ -188,16 +189,19 @@ function VariantTile({
   color,
   state,
   onCycle,
+  onMastery,
 }: {
   spriteId: string
   variant: VariantId
   color: string
   state: CardState | undefined
   onCycle: () => void
+  onMastery: (next: CardState) => void
 }) {
   const owned = Boolean(state)
   const mastered = state === 'mastered'
   const accent = mastered ? GOLD : color
+  const ownArt = hasVariantArt(spriteId, variant)
 
   const status = mastered ? 'Dominada' : owned ? 'La tienes' : 'Te falta'
   const next = mastered ? 'quitarla' : owned ? 'marcarla como dominada' : 'añadirla'
@@ -209,9 +213,12 @@ function VariantTile({
         type="button"
         onClick={onCycle}
         aria-pressed={owned}
-        aria-label={`${variantsById[variant].name}. ${status}. Pulsa para ${next}.`}
+        aria-label={`${variantsById[variant].name}. ${status}.${ownArt ? '' : ' Sin arte propio todavía.'} Pulsa para ${next}.`}
         className={[
-          'relative w-full overflow-hidden rounded-xl border p-1.5',
+          'relative w-full overflow-hidden rounded-xl p-1.5',
+          // Borde discontinuo cuando el arte es prestado del base, para no colar
+          // cuatro miniaturas idénticas como si fueran distintas.
+          ownArt ? 'border' : 'border border-dashed',
           'transition-[transform,border-color,background-color,box-shadow] duration-200 ease-[var(--ease-out-strong)]',
           'active:scale-[0.96]',
           owned ? 'holo' : '',
@@ -241,16 +248,9 @@ function VariantTile({
               'h-full w-full object-contain transition-[filter,opacity] duration-200',
               // Sin desaturar: el color es lo que diferencia una variante de otra.
               owned ? 'opacity-100' : 'opacity-60 brightness-75',
+              ownArt ? '' : 'opacity-30',
             ].join(' ')}
           />
-          {owned && !mastered && (
-            <span
-              className="absolute right-0 top-0 grid h-4 w-4 place-items-center rounded-full"
-              style={{ background: color }}
-            >
-              <Check size={10} strokeWidth={4} className="text-void" />
-            </span>
-          )}
         </div>
         <p
           className="relative mt-1 truncate text-center text-[0.68rem] font-semibold"
@@ -260,7 +260,18 @@ function VariantTile({
         </p>
       </button>
 
-      {mastered && <CrownBadge className="absolute -right-1.5 -top-2 z-10" size={22} />}
+      <CrownButton
+        className="-right-1.5 -top-2 z-10"
+        size={22}
+        mastered={mastered}
+        disabled={!owned}
+        label={
+          mastered
+            ? `${variantsById[variant].name}: quitar dominado`
+            : `${variantsById[variant].name}: marcar como dominada`
+        }
+        onToggle={() => onMastery(mastered ? 'owned' : 'mastered')}
+      />
     </div>
   )
 }

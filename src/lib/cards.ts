@@ -6,7 +6,8 @@ import { variantsById, type VariantId } from '../data/variants'
 
 const baseImages = images as Record<string, { file: string; kind: 'icon' | 'art' }>
 
-type CatalogEntry = { catch: string; variants: Record<string, string> }
+/** `catch` y los hashes son null en los espíritus que spritecatch aún no publica. */
+type CatalogEntry = { catch: string | null; variants: Record<string, string | null> }
 const catalogById = catalog as Record<string, CatalogEntry>
 
 /** Orden fijo en el que se muestran las variantes, sea cual sea el espíritu. */
@@ -46,6 +47,12 @@ export function cardImage(spriteId: string, variant: VariantId): string {
   if (variant !== 'base') return `${base}sprites/variants/${spriteId}-${variant}.png`
   const file = baseImages[spriteId]?.file ?? `${spriteId}.png`
   return `${base}sprites/${file}`
+}
+
+/** Si no hay arte propio de la variante se enseña el base, pero avisando. */
+export function hasVariantArt(spriteId: string, variant: VariantId): boolean {
+  if (variant === 'base') return true
+  return Boolean(catalogById[spriteId]?.variants[variant])
 }
 
 export function variantName(variant: VariantId): string {
