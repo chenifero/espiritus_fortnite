@@ -1,11 +1,13 @@
 import { SearchX } from 'lucide-react'
 import { useMemo, useState } from 'react'
+import { AuthBar } from './components/AuthBar'
 import { Filters, type FilterState } from './components/Filters'
 import { ProgressHeader } from './components/ProgressHeader'
 import { SpriteCard } from './components/SpriteCard'
 import { SpriteSheet } from './components/SpriteSheet'
 import { seasons, sprites } from './data/sprites'
 import { spriteProgress } from './lib/cards'
+import { useAuth } from './lib/useAuth'
 import { useCollection } from './lib/useCollection'
 
 const normalize = (s: string) =>
@@ -15,7 +17,8 @@ const normalize = (s: string) =>
     .replace(/[̀-ͯ]/g, '')
 
 export default function App() {
-  const { cards, cycle, setMany } = useCollection()
+  const { user } = useAuth()
+  const { cards, cycle, setMany } = useCollection(user?.id ?? null)
   const [openId, setOpenId] = useState<string | null>(null)
   const [filters, setFilters] = useState<FilterState>({
     query: '',
@@ -55,6 +58,12 @@ export default function App() {
   return (
     <div className="min-h-dvh">
       <div className="sticky top-0 z-40">
+        <div
+          className="border-b border-edge bg-void"
+          style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
+        >
+          <AuthBar />
+        </div>
         <ProgressHeader sprites={sprites} collection={cards} />
         <div className="border-b border-edge bg-void/85 backdrop-blur-xl">
           <Filters value={filters} onChange={setFilters} />

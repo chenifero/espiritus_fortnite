@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.vercel
+.env*
+
+# Claude Code tooling (skills, agents) — no es parte de la app
+.claude/
+.agents/
+skills-lock.json
