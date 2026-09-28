@@ -1,6 +1,6 @@
 <div align="center">
 
-# 👻 Espíritus Fortnite
+# 👻 SpiritDex
 
 **El tracker no oficial de espíritus de Fortnite.** Marca qué cartas tienes, cuáles has dominado, y sincronízalas entre dispositivos.
 

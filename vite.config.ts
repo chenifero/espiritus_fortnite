@@ -10,7 +10,7 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
+      includeAssets: ['apple-touch-icon.png'],
       workbox: {
         // El arte pesa ~2,8 MB: precargarlo todo en la instalación castigaría los datos
         // móviles, así que cada espíritu se guarda la primera vez que se ve.
@@ -36,8 +36,8 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: 'Espíritus Fortnite',
-        short_name: 'Espíritus',
+        name: 'SpiritDex',
+        short_name: 'SpiritDex',
         description: 'Marca qué espíritus de Fortnite tienes coleccionados',
         theme_color: '#0b0f19',
         background_color: '#0b0f19',
@@ -45,9 +45,20 @@ export default defineConfig({
         start_url: '/',
         icons: [
           {
-            src: 'favicon.svg',
-            sizes: 'any',
-            type: 'image/svg+xml',
+            src: 'favicon-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'favicon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+          {
+            src: 'favicon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
           },
         ],
       },

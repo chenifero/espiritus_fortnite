@@ -27,7 +27,7 @@ export function ProgressHeader({ sprites, collection }: Props) {
               className="font-display text-2xl font-black leading-none sm:text-3xl"
               style={{ fontStretch: '118%', letterSpacing: '-0.03em' }}
             >
-              Espíritus
+              SpiritDex
             </h1>
             <p className="mt-1.5 text-[0.8rem] text-ash">
               <span className="tabular font-semibold text-chalk">{complete}</span> de{' '}
