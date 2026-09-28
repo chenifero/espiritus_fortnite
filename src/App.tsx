@@ -12,6 +12,7 @@ import { spriteProgress } from './lib/cards'
 import { useAuth } from './lib/useAuth'
 import { useCollection } from './lib/useCollection'
 import { useOnboarding } from './lib/useOnboarding'
+import { useScrollCollapse } from './lib/useScrollCollapse'
 
 const normalize = (s: string) =>
   s
@@ -23,6 +24,7 @@ export default function App() {
   const { user } = useAuth()
   const { cards, cycle, setMany } = useCollection(user?.id ?? null)
   const onboarding = useOnboarding()
+  const collapsed = useScrollCollapse()
   const [openId, setOpenId] = useState<string | null>(null)
   const [filters, setFilters] = useState<FilterState>({
     query: '',
@@ -61,16 +63,30 @@ export default function App() {
 
   return (
     <div className="min-h-dvh">
-      <div className="sticky top-0 z-40">
+      <div className="sticky top-0 z-40" style={{ overflowAnchor: 'none' }}>
         <div
-          className="border-b border-edge bg-void"
-          style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
+          className="grid transition-[grid-template-rows] duration-300 ease-[var(--ease-out-strong)]"
+          style={{ gridTemplateRows: collapsed ? '0fr' : '1fr' }}
         >
-          <AuthBar onHelp={onboarding.showUsage} />
+          <div className="overflow-hidden">
+            <div
+              className="border-b border-edge bg-void"
+              style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
+            >
+              <AuthBar onHelp={onboarding.showUsage} />
+            </div>
+          </div>
         </div>
-        <ProgressHeader sprites={sprites} collection={cards} />
-        <div className="border-b border-edge bg-void/85 backdrop-blur-xl">
-          <Filters value={filters} onChange={setFilters} />
+        <ProgressHeader sprites={sprites} collection={cards} collapsed={collapsed} />
+        <div
+          className="grid transition-[grid-template-rows] duration-300 ease-[var(--ease-out-strong)]"
+          style={{ gridTemplateRows: collapsed ? '0fr' : '1fr' }}
+        >
+          <div className="overflow-hidden">
+            <div className="border-b border-edge bg-void/85 backdrop-blur-xl">
+              <Filters value={filters} onChange={setFilters} />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -150,7 +166,9 @@ export default function App() {
           onClose={onboarding.closeUsage}
         />
       )}
-      {onboarding.stage === 'instalar' && <OnboardingInstall onClose={onboarding.closeInstall} />}
+      {onboarding.stage === 'instalar' && (
+        <OnboardingInstall signedIn={Boolean(user)} onClose={onboarding.closeInstall} />
+      )}
     </div>
   )
 }

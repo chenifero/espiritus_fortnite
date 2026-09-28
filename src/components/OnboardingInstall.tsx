@@ -1,6 +1,7 @@
 import {
   Download,
   EllipsisVertical,
+  Mail,
   Share,
   Smartphone,
   SquareArrowUp,
@@ -11,10 +12,11 @@ import { useInstallPrompt } from '../lib/useInstallPrompt'
 import { OnboardingSheet } from './OnboardingSheet'
 
 type Props = {
+  signedIn: boolean
   onClose: () => void
 }
 
-export function OnboardingInstall({ onClose }: Props) {
+export function OnboardingInstall({ signedIn, onClose }: Props) {
   return (
     <OnboardingSheet
       title="Instálala en tu pantalla de inicio"
@@ -22,6 +24,25 @@ export function OnboardingInstall({ onClose }: Props) {
       primaryLabel="Entendido"
       onClose={onClose}
     >
+      {!signedIn && (
+        <div className="flex gap-3 border-b border-edge py-4">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-edge-lit bg-slab text-ash">
+            <Mail size={17} strokeWidth={2.25} />
+          </span>
+          <div className="min-w-0 pt-1 text-[0.9rem] leading-relaxed">
+            <p>
+              <span className="font-semibold text-chalk">Antes de instalar:</span> si vas a guardar
+              tu colección por email, hazlo ahora y abre el enlace de confirmación aquí, en el
+              navegador.
+            </p>
+            <p className="mt-1.5 text-ash">
+              Si instalas la app primero, ese enlace se abrirá en el navegador y no en la app
+              instalada, así que tu colección guardada no aparecerá dentro de ella.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="flex gap-3 py-2">
         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-edge-lit bg-slab text-ash">
           <Smartphone size={17} strokeWidth={2.25} />

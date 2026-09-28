@@ -32,6 +32,9 @@
     -webkit-text-size-adjust: 100%;
     overscroll-behavior: none;
     color-scheme: dark;
+    /* Evita que el navegador compense el scroll cuando la cabecera cambia
+       de altura al colapsarse: sin esto entra en bucle con useScrollCollapse. */
+    overflow-anchor: none;
   }
 
   body {
