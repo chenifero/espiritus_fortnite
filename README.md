@@ -4,7 +4,7 @@
 
 **El tracker no oficial de espíritus de Fortnite.** Marca qué cartas tienes, cuáles has dominado, y sincronízalas entre dispositivos.
 
-[![Live demo](https://img.shields.io/badge/demo-espiritusfortnite.vercel.app-6c5ce7?style=for-the-badge)](https://espiritusfortnite.vercel.app)
+[![Live demo](https://img.shields.io/badge/demo-spiritdex.iamsergio.dev-6c5ce7?style=for-the-badge)](https://spiritdex.iamsergio.dev)
 [![React 19](https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white&style=flat-square)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white&style=flat-square)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-8-646cff?logo=vite&logoColor=white&style=flat-square)](https://vite.dev)
@@ -103,7 +103,7 @@ supabase/          # migraciones SQL y config del proyecto
 
 ## Despliegue
 
-La demo vive en [espiritusfortnite.vercel.app](https://espiritusfortnite.vercel.app), desplegada en Vercel con Supabase y Resend conectados vía [Vercel Marketplace](https://vercel.com/marketplace).
+La demo vive en [spiritdex.iamsergio.dev](https://spiritdex.iamsergio.dev), desplegada en Vercel con Supabase y Resend conectados vía [Vercel Marketplace](https://vercel.com/marketplace).
 
 ---
 
