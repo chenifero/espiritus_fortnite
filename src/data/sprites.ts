@@ -51,38 +51,14 @@ export const rarityLabels: Record<Rarity, string> = {
   mitico: 'Mítico',
 }
 
+/**
+ * Espíritus que reaparecen en varias temporadas con el mismo nombre cuentan como
+ * uno solo: una vez conseguido (o dominado) en una, no vuelve a pedirse en otra.
+ * Se descarta aquí su versión del Cap. 6 (una sola carta, sin variantes propias)
+ * y se conserva la de temporada posterior, que trae el catálogo completo.
+ */
 export const sprites: Sprite[] = [
   // ─── Capítulo 6 (T1–T3) — lanzables ───
-  {
-    id: 'agua-c6',
-    name: 'Agua',
-    nameEn: 'Water',
-    season: 'c6',
-    rarity: null,
-    ability: 'Al lanzarlo suelta una ráfaga curativa y lluvia que cura durante 10 s. 3 usos.',
-    versions: 1,
-    kind: 'lanzable',
-  },
-  {
-    id: 'aire-c6',
-    name: 'Aire / Viento',
-    nameEn: 'Air / Wind',
-    season: 'c6',
-    rarity: null,
-    ability: 'Al lanzarlo crea un campo de 10 s que te eleva y da redespliegue del planeador. 3 usos.',
-    versions: 1,
-    kind: 'lanzable',
-  },
-  {
-    id: 'tierra-c6',
-    name: 'Tierra',
-    nameEn: 'Earth',
-    season: 'c6',
-    rarity: null,
-    ability: 'Le das un arma, se la come y te devuelve un arma legendaria aleatoria.',
-    versions: 1,
-    kind: 'lanzable',
-  },
   {
     id: 'impulso-c6',
     name: 'Impulso',
