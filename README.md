@@ -53,8 +53,8 @@ Fortnite ha tenido **48 espíritus** repartidos en tres temporadas (Capítulo 6,
 ## Empezar en local
 
 ```bash
-git clone https://github.com/chenifero/esperitus_fortnite.git
-cd esperitus_fortnite
+git clone https://github.com/chenifero/espiritus_fortnite.git
+cd espiritus_fortnite
 npm install
 ```
 
