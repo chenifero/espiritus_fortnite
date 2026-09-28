@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import { SearchX } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { AuthBar } from './components/AuthBar'
@@ -169,6 +170,8 @@ export default function App() {
       {onboarding.stage === 'instalar' && (
         <OnboardingInstall signedIn={Boolean(user)} onClose={onboarding.closeInstall} />
       )}
+
+      <Analytics />
     </div>
   )
 }
