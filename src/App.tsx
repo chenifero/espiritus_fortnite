@@ -2,6 +2,8 @@ import { SearchX } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { AuthBar } from './components/AuthBar'
 import { Filters, type FilterState } from './components/Filters'
+import { OnboardingInstall } from './components/OnboardingInstall'
+import { OnboardingUsage } from './components/OnboardingUsage'
 import { ProgressHeader } from './components/ProgressHeader'
 import { SpriteCard } from './components/SpriteCard'
 import { SpriteSheet } from './components/SpriteSheet'
@@ -9,6 +11,7 @@ import { seasons, sprites } from './data/sprites'
 import { spriteProgress } from './lib/cards'
 import { useAuth } from './lib/useAuth'
 import { useCollection } from './lib/useCollection'
+import { useOnboarding } from './lib/useOnboarding'
 
 const normalize = (s: string) =>
   s
@@ -19,6 +22,7 @@ const normalize = (s: string) =>
 export default function App() {
   const { user } = useAuth()
   const { cards, cycle, setMany } = useCollection(user?.id ?? null)
+  const onboarding = useOnboarding()
   const [openId, setOpenId] = useState<string | null>(null)
   const [filters, setFilters] = useState<FilterState>({
     query: '',
@@ -62,7 +66,7 @@ export default function App() {
           className="border-b border-edge bg-void"
           style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
         >
-          <AuthBar />
+          <AuthBar onHelp={onboarding.showUsage} />
         </div>
         <ProgressHeader sprites={sprites} collection={cards} />
         <div className="border-b border-edge bg-void/85 backdrop-blur-xl">
@@ -139,6 +143,14 @@ export default function App() {
           onClose={() => setOpenId(null)}
         />
       )}
+
+      {onboarding.stage === 'uso' && (
+        <OnboardingUsage
+          primaryLabel={onboarding.installPending ? 'Siguiente' : 'Entendido, ¡a coleccionar!'}
+          onClose={onboarding.closeUsage}
+        />
+      )}
+      {onboarding.stage === 'instalar' && <OnboardingInstall onClose={onboarding.closeInstall} />}
     </div>
   )
 }
