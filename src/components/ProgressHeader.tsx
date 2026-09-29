@@ -14,7 +14,7 @@ export function ProgressHeader({ sprites, collection, collapsed = false }: Props
   const have = ownedCards(sprites, collection)
   const mastered = masteredCards(sprites, collection)
   const pct = cards === 0 ? 0 : Math.round((have / cards) * 100)
-  const complete = sprites.filter((s) => spriteProgress(s.id, collection).complete).length
+  const complete = sprites.filter((s) => spriteProgress(s.id, collection).started).length
 
   return (
     <header

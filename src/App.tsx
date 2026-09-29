@@ -40,9 +40,9 @@ export default function App() {
       if (filters.season !== 'todas' && s.season !== filters.season) return false
       if (filters.rarity !== 'todas' && s.rarity !== filters.rarity) return false
       if (filters.ownedFilter !== 'todos') {
-        const { complete } = spriteProgress(s.id, cards)
-        if (filters.ownedFilter === 'completos' && !complete) return false
-        if (filters.ownedFilter === 'faltan' && complete) return false
+        const { started } = spriteProgress(s.id, cards)
+        if (filters.ownedFilter === 'completos' && !started) return false
+        if (filters.ownedFilter === 'faltan' && started) return false
       }
       if (q && !normalize(`${s.name} ${s.nameEn ?? ''}`).includes(q)) return false
       return true
