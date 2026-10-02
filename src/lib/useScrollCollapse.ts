@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 
 /**
- * true mientras se baja pasado el umbral; vuelve a false en cuanto se sube
- * un poco o se está cerca del principio de la página.
+ * true mientras se baja pasado el umbral; vuelve a false al subir
+ * `expandDelta` px seguidos o al acercarse al principio de la página.
+ *
+ * Colapsar es casi inmediato (`flipDelta`), pero expandir pide un recorrido
+ * hacia arriba mayor: así un pequeño ajuste del scroll al leer no despliega
+ * la cabecera de golpe, solo una subida decidida.
  *
  * Compara contra el punto del último cambio de dirección, no frame a frame:
  * así un scroll con sacudidas de 1-2px (inercia) no dispara el toggle en
@@ -16,7 +20,12 @@ import { useEffect, useRef, useState } from 'react'
  * todo con pocas filas de espíritus porque ahí el recorte de altura es una
  * fracción grande de lo que queda por scrollear.
  */
-export function useScrollCollapse(threshold = 24, flipDelta = 12, settleMs = 350) {
+export function useScrollCollapse(
+  threshold = 24,
+  flipDelta = 12,
+  expandDelta = 80,
+  settleMs = 350,
+) {
   const [collapsed, setCollapsed] = useState(false)
   const lastY = useRef(0)
   const dir = useRef<1 | -1 | 0>(0)
@@ -68,7 +77,7 @@ export function useScrollCollapse(threshold = 24, flipDelta = 12, settleMs = 350
         const traveled = y - runStartY.current
         if (newDir === 1 && traveled > flipDelta) {
           flip(true)
-        } else if (newDir === -1 && traveled < -flipDelta) {
+        } else if (newDir === -1 && traveled < -expandDelta) {
           flip(false)
         }
       }
@@ -84,7 +93,7 @@ export function useScrollCollapse(threshold = 24, flipDelta = 12, settleMs = 350
 
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [threshold, flipDelta, settleMs])
+  }, [threshold, flipDelta, expandDelta, settleMs])
 
   return collapsed
 }
