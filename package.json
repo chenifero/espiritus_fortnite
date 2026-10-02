@@ -9,7 +9,8 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "sprites:sync": "node scripts/sync-sprite-images.mjs",
-    "sprites:fetch": "node scripts/fetch-sprite-images.mjs"
+    "sprites:fetch": "node scripts/fetch-sprite-images.mjs",
+    "sprites:locker": "node scripts/fetch-spritelocker.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.117.2",

@@ -12,6 +12,7 @@ export type VariantId =
   | 'cheat-master'
   | 'loot-hacker'
   | 'bounty-hunter'
+  | 'trick-or-treat'
 
 export type Variant = {
   id: VariantId
@@ -81,6 +82,12 @@ export const variants: Variant[] = [
     id: 'bounty-hunter',
     name: 'Cazarrecompensas',
     perk: 'Probabilidad de que salga un espíritu al eliminar; solo gana XP con eliminaciones.',
+    seasons: ['c7t4'],
+  },
+  {
+    id: 'trick-or-treat',
+    name: 'Truco o trato',
+    perk: 'Variante de Halloween (1/10/2026). Su bono aún no está confirmado.',
     seasons: ['c7t4'],
   },
 ]

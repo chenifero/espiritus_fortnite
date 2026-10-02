@@ -72,8 +72,9 @@ async function main() {
       skipped.push(id)
       continue
     }
+    // Lo que no es un hash de spritecatch (p. ej. "spritelocker") viene de otra fuente.
     const wanted = (withVariants ? Object.entries(variants) : [['base', variants.base]]).filter(
-      ([, hash]) => hash,
+      ([, hash]) => /^[0-9a-f]{8}$/.test(hash ?? ''),
     )
 
     for (const [variant, hash] of wanted) {

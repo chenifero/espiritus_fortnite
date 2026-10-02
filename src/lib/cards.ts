@@ -6,8 +6,16 @@ import { variantsById, type VariantId } from '../data/variants'
 
 const baseImages = images as Record<string, { file: string; kind: 'icon' | 'art' }>
 
-/** `catch` y los hashes son null en los espíritus que spritecatch aún no publica. */
-type CatalogEntry = { catch: string | null; variants: Record<string, string | null> }
+/**
+ * `catch` y los hashes son null en los espíritus que spritecatch aún no publica.
+ * Una variante con valor "spritelocker" tiene arte bajado de spritelocker.com
+ * (`locker` es su slug allí); ver scripts/fetch-spritelocker.mjs.
+ */
+type CatalogEntry = {
+  catch: string | null
+  locker?: string
+  variants: Record<string, string | null>
+}
 const catalogById = catalog as Record<string, CatalogEntry>
 
 /** Orden fijo en el que se muestran las variantes, sea cual sea el espíritu. */
@@ -23,6 +31,7 @@ const ORDER: VariantId[] = [
   'cheat-master',
   'loot-hacker',
   'bounty-hunter',
+  'trick-or-treat',
 ]
 
 /**

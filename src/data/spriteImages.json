@@ -3,16 +3,8 @@
     "file": "8-bits.png",
     "kind": "icon"
   },
-  "agua-c6": {
-    "file": "agua-c6.webp",
-    "kind": "icon"
-  },
   "agua": {
     "file": "agua.png",
-    "kind": "icon"
-  },
-  "aire-c6": {
-    "file": "aire-c6.webp",
     "kind": "icon"
   },
   "aire": {
@@ -57,6 +49,14 @@
   },
   "demoniaco": {
     "file": "demoniaco.png",
+    "kind": "icon"
+  },
+  "el-ciervo": {
+    "file": "el-ciervo.png",
+    "kind": "icon"
+  },
+  "embestida-espectral": {
+    "file": "embestida-espectral.png",
     "kind": "icon"
   },
   "estanque": {
@@ -159,6 +159,10 @@
     "file": "rayos-x.png",
     "kind": "icon"
   },
+  "rebuscador": {
+    "file": "rebuscador.png",
+    "kind": "icon"
+  },
   "rey": {
     "file": "rey.png",
     "kind": "icon"
@@ -191,12 +195,12 @@
     "file": "tails.png",
     "kind": "icon"
   },
-  "tierra-c6": {
-    "file": "tierra-c6.webp",
-    "kind": "icon"
-  },
   "tierra": {
     "file": "tierra.png",
+    "kind": "icon"
+  },
+  "vampiro": {
+    "file": "vampiro.png",
     "kind": "icon"
   },
   "vini-jr": {
